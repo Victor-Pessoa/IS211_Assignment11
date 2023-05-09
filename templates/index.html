@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+</head>
+<body>
+    <h1>To Do List</h1>
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <table>
+        <tr>
+            <th>Task</th>
+            <th>Email</th>
+            <th>Priority</th>
+        </tr>
+        {% for todo in todos %}
+        <tr>
+            <td>{{ todo.task }}</td>
+            <td>{{ todo.email }}</td>
+            <td>{{ todo.priority }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <form action="/submit" method="post">
+        <input type="text" name="task" placeholder="Task">
+        <input type="text" name="email" placeholder="Email">
+        <select name="priority">
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+        </select>
+        <input type="submit" value="Add To Do Item">
+    </form>
+    <form action="/clear" method="post">
+        <input type="submit" value="Clear">
+    </form>
+</body>
+</html>
